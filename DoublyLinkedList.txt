@@ -1,0 +1,174 @@
+    public class Node
+    {
+        public int data;
+        public Node next;
+        public Node Previous;
+    }
+
+
+ class DoublyLinkedList
+    {
+        Node first;
+        Node last;
+
+
+        public void InsertFirst(int data)
+        {
+            Node obj = new Node();
+            obj.data = data;
+            if (first == null)
+            {
+                last = obj;
+            }
+            else
+            {
+                first.Previous = obj;
+            }
+            obj.next = first;
+            first = obj;
+        }
+
+        public void InsertAtEnd(int data)
+        {
+            Node obj = new Node();
+            obj.data = data;
+
+            if (first == null)
+            {
+
+                first = obj;
+            }
+            else
+            {
+                last.next = obj;
+                obj.Previous = last;
+
+
+            }
+            last = obj;
+        }
+
+        public Node DeleteFirst()
+        {
+            Node temp = first;
+            if (first.next == null)
+            {
+                last = null;
+            }
+            else
+            {
+                first.next.Previous = null;
+            }
+            first = first.next;
+
+            return temp;
+        }
+
+        public Node DeleteLast()
+        {
+            Node temp = last;
+            if (first.next == null)
+            {
+                last = null;
+            }
+
+            else
+            {
+                last.Previous.next = null;
+
+            }
+
+            last = last.Previous;
+
+            return temp;
+        }
+
+        public Boolean insertAfter(int key, int data)
+        {
+            Node current = first;
+            while (current.data != key)
+            {
+                current = current.next;
+                if (current == null)
+                {
+                    return false;
+                }
+
+            }
+             Node obj = new Node();
+            obj.data = data;
+
+            if (current == last)
+            {
+
+                last = obj;
+            }
+            else
+            {
+                obj.next = current.next;
+                current.next.Previous = obj;
+            }
+
+            obj.Previous = current;
+            current.next = obj;
+            return true;
+        }
+
+
+        public Node DeleteatKey(int key)
+        {
+           
+            Node current = first;
+            while (current.data != key)
+            {
+                current = current.next;
+                if (current == null)
+                {
+                    return null;
+                }
+
+            }
+            if (current == first)
+            {
+                first = current.next;
+                return current;
+            }
+            else if (current==last)
+            {
+                last = current.Previous;
+                return current;
+            }
+            else
+            {
+                
+                current.Previous.next = current.next;
+                current.next.Previous = current.Previous;
+                return current;
+            }
+
+
+
+
+        }
+
+        public void DisplayForward()
+        {
+            Node current = first;
+            while (current.next != null)
+            {
+                Console.WriteLine(current.data);
+                current = current.next;
+            }
+        }
+
+
+        public void DisplayBackward()
+        {
+            Node current = last;
+            while (current.Previous != null)
+            {
+                Console.WriteLine(current.data);
+                current = current.Previous;
+            }
+        }
+    }

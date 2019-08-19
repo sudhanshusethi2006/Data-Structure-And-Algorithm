@@ -1,0 +1,96 @@
+    class node
+    {
+      public  int data;
+      public  node next;
+    }
+
+  class CircularLinkedList
+    {
+        node first;
+        node last;
+
+
+        public void insert(int data)
+        {
+            node obj = new node();
+            obj.data = data;
+            if (first == null)
+            {
+                last = obj;
+            }
+
+            obj.next = first;
+            first = obj;
+        }
+
+        public void InsertAtend(int data)
+        {
+            node obj = new node();
+            obj.data = data;
+            if (first == null)
+            {
+
+                first = obj;
+
+            }
+            else
+            {
+                if (last == null)
+                {
+                    last = obj;
+                    first.next = last;
+                }
+                else
+                {
+                    last.next = obj;
+                    last = obj;
+                }
+
+
+
+
+            }
+        }
+            
+            public int deleteFirst(){
+                int temp= first.data;
+
+                if(first.next==null){
+                    last=null;
+                }
+
+                first=first.next;
+                return temp;
+            }
+
+            public int deleteLast()
+            {
+                int lastItem = last.data;
+               
+                node temp = first;
+                while (temp.next != null)
+                {
+                    temp = temp.next;
+                    if (temp.next.next == null)
+                    {
+                        last = temp;
+                        temp.next = null;
+                    }
+                }
+               
+                return lastItem;
+            }
+
+        
+
+        public void Print()
+        {
+            while (first != null)
+            {
+                Console.WriteLine(first.data);
+                first = first.next;
+
+            }
+        }
+
+    }

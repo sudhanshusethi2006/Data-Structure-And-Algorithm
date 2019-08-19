@@ -1,0 +1,54 @@
+    class node
+    {
+      public  int data;
+      public  node next;
+    }
+
+  class LinkedList
+    {
+        node LinkList;
+        public void insert(int data)
+        {
+            node obj = new node();
+            obj.data = data;
+            obj.next = LinkList;
+            LinkList = obj;
+        }
+
+
+        public void InsertAtend(int data)
+        {
+            node obj = new node();
+            node temp = LinkList;
+            if (LinkList == null)
+            {
+                obj.data = data;
+                obj.next = LinkList;
+                LinkList = obj;
+            }
+            else
+            {
+
+                while (temp.next != null)
+                {
+                    temp = temp.next;
+
+                }
+                obj.data = data;
+
+                temp.next = obj;
+
+            }
+            
+
+        }
+        public void Print()
+        {
+            while (LinkList != null)
+            {
+                Console.WriteLine(LinkList.data);
+                LinkList = LinkList.next;
+             
+            }
+        }
+    }
