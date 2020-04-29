@@ -1,0 +1,121 @@
+  class LinkedList
+    {
+
+      public  class node
+        {
+            public int data;
+            public node next;
+
+            public node(int data)
+            {
+                this.data = data;
+            }
+        }
+
+        node head;
+
+public void removeAllDuplicates()
+        {
+            node temp = head;
+
+            Dictionary<int, int> dd = new Dictionary<int, int>();
+
+            while (temp != null)
+            {
+                if (dd.ContainsKey(temp.data))
+                {
+                    dd[temp.data]++;
+                }
+                else
+                {
+                    dd.Add(temp.data, 1);
+                }
+                temp = temp.next;
+            }
+
+            temp = head.next;
+            node temp2 = head;
+            while (temp != null)
+            {
+                if (dd[temp.data] > 1)
+                {
+                    node temp3 = temp.next;
+                    temp2.next = temp3;
+                    dd[temp.data]--;
+                    temp = temp3;
+                }
+                else
+                {
+                    temp2 = temp;
+                    temp = temp.next;
+                }
+
+            }
+        }
+
+
+/// Reverse the linked list
+
+    public node ReverseLinkedList()
+        {
+            node temp = head;
+
+            node temp1 = null;
+            node temp2 = null;
+            while (temp != null)
+            {
+                temp2 = temp1;
+                temp1 = temp;
+                temp = temp.next;
+                temp1.next = temp2;
+            }
+            return temp1;
+        }
+
+/// reverse the linked list with Recursion 
+
+        node first;
+        node curr;
+        public node ReverseLinkedList_Recursive(node temp, node head)
+        {
+            if (head != null)
+            {
+                ReverseLinkedList_Recursive(head, head.next);
+                if (temp != null && temp.next != null) temp.next = null;
+                curr.next = temp;
+            }
+            else
+            {
+                first = temp;
+            }
+            curr = temp;
+            return first;
+        }
+/// check for a loop in a linked list
+
+   public bool isThereALoop()
+        {
+            node temp = head;
+            node temp1 = temp;
+            node temp2 = temp;
+
+
+            do
+            {
+                temp1 = temp.next;
+                temp2 = temp.next;
+                if (temp2 != null)
+                {
+                    temp2 = temp2.next;
+                }
+
+                if (temp1 == temp2)
+                {
+                    return true;
+                }
+            }
+            while (temp1 != null && temp2 != null);
+
+            return false;
+        }
+}
