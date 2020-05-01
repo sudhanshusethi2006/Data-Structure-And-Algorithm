@@ -1,0 +1,96 @@
+    class BinartTreeUsingQueue
+    {
+
+        static void Main(string[] args)
+        {
+
+
+
+            BTUsingQueue obj = new BTUsingQueue();
+            obj.insert(1);
+            obj.insert(2);
+            obj.insert(3);
+            obj.insert(4);
+            obj.insert(5);
+            obj.insert(6);
+            obj.insert(7);
+     //       
+     //                     1
+     //                    / \
+     //                   2   3
+     //                  /\   /\
+     //                 4  5 6  7 
+     //
+
+           BinaryTreeNode tree = obj.getTree();
+        }
+    }
+class BTUsingQueue
+    {
+     private BinaryTreeNode root;
+        private Queue<BinaryTreeNode> myQueue = new Queue<BinaryTreeNode>();
+
+
+     public   BinaryTreeNode getTree()
+        {
+            return root;
+        }
+        public void insert(int data)
+        {
+
+       
+            if (root == null)
+            {
+                root = new BinaryTreeNode(data);
+                myQueue.Enqueue(root);
+            }
+      
+
+
+            else
+            {
+                if (myQueue.Count > 0)
+                {
+
+
+                    BinaryTreeNode temp;
+                    BinaryTreeNode peek = myQueue.Peek();
+                    
+                    if (peek.left == null)
+                    {
+                        temp = new BinaryTreeNode(data);
+                        peek.left = temp;
+                    }
+                    else
+                    {
+                        temp = new BinaryTreeNode(data);
+                        peek.right = temp;
+                    }
+
+                    if(peek.left!=null && peek.right != null)
+                    {
+                        myQueue.Dequeue();
+                    }
+              
+
+
+                    myQueue.Enqueue(temp);
+
+                }
+            }
+
+        }
+
+    }
+    
+     class BinaryTreeNode
+    {
+        public int data;
+        public BinaryTreeNode left;
+        public BinaryTreeNode right;
+
+        public BinaryTreeNode(int data)
+        {
+            this.data = data;
+        }
+    }
